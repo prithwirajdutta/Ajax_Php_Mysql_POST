@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  </head>
+  <body style="background-color:skyblue;">
+    <center>
+      <div class="container" style="max-width:600px;margin-top:50px;">
+          <div class="card" style="padding:20px;">
+            <h4>Learn Ajax</h4><br>
+            <form class="form-group" id="myform" method="post">
+              <input type="text" id="fname" name="fname" class="form-control" placeholder="first name"><br>
+              <input type="text" id="lname" name="lname" class="form-control" placeholder="last name"><br>
+              <div class="row">
+                <div class="col-md-6">
+                    <input type="submit" name="submit" value="Submit" id="sub" class="btn btn-success">
+                </div>
+                <div class="col-md-6">
+                      <form class="form-group">
+                        <input type="submit" name="submit" id="submit" value="Display" class="btn btn-primary">
+                      </form>
+                </div>
+              </div>
+            </form>
+            <br>
+            <div class="container" id="disp"></div>
+          </div>
+      </div>
+    </center>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+      var frm = document.querySelector("#myform");
+      frm.addEventListener("submit",function(e){
+        e.preventDefault();
+        confirm();
+      });
+      function confirm(){
+        const fname = document.querySelector("#fname").value;
+        const lname = document.querySelector("#lname").value;
+        var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              swal({
+                    title: "Thank You",
+                    text: "For Registering with us !",
+                    icon: "success",
+                  });
+            }
+          }
+
+       xhttp.open("POST", "function.php", true);
+       xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhttp.send("fname="+fname+"&lname="+lname+"&submit=submit");
+      }
+    </script>
+  </body>
+</html>
